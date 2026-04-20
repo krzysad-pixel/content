@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>content — Content Units</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Content Units</h1>
+    <div class="filters">
+      <label>Produkt
+        <select id="filter-product"><option value="">— wszystkie —</option></select>
+      </label>
+      <label>Status
+        <select id="filter-status">
+          <option value="">— wszystkie —</option>
+          <option value="backlog">backlog</option>
+          <option value="ready">ready</option>
+          <option value="published">published</option>
+          <option value="archived">archived</option>
+        </select>
+      </label>
+      <label>Typ
+        <select id="filter-type">
+          <option value="">— wszystkie —</option>
+          <option value="feature">feature</option>
+          <option value="pain">pain</option>
+          <option value="story">story</option>
+          <option value="edu">edu</option>
+          <option value="social-proof">social-proof</option>
+        </select>
+      </label>
+      <button id="refresh-btn" type="button">Odśwież</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="table-wrap">
+      <table id="units-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tytuł</th>
+            <th>Produkt</th>
+            <th>Moduł</th>
+            <th>Typ</th>
+            <th>Rola</th>
+            <th>Status</th>
+            <th>Akcje</th>
+          </tr>
+        </thead>
+        <tbody id="units-tbody">
+          <tr><td colspan="8" class="empty">Ładowanie…</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <aside id="detail-panel" class="detail-panel hidden">
+      <button id="detail-close" type="button" class="close-btn">×</button>
+      <div id="detail-content"></div>
+    </aside>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
