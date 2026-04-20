@@ -4,14 +4,13 @@
 
 ## Aktualny aktywny task
 
-**Brak** — następny: TASK-002
+**Brak** — następny: TASK-003
 
 ## Kolejka (w kolejności realizacji)
 
 | Priorytet | Task | Plik | Status | Zależności |
 |-----------|------|------|--------|-----------|
-| 2 | Backend API | `tasks/queue/TASK-002-backend-api.md` | ready | — |
-| 3 | Frontend UI | `tasks/queue/TASK-003-frontend-ui.md` | blocked | TASK-002 |
+| 3 | Frontend UI | `tasks/queue/TASK-003-frontend-ui.md` | ready | — |
 | 4 | Dockeryzacja | `tasks/queue/TASK-004-docker.md` | blocked | TASK-003 |
 
 ## Zrealizowane taski
@@ -19,3 +18,4 @@
 | Task | Tytuł | Data ukończenia |
 |------|-------|----------------|
 | TASK-001 | Init struktury repo | 2026-04-20 |
+| TASK-002 | Backend API (Express + markdown) | 2026-04-20 |
