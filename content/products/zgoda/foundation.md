@@ -3,163 +3,146 @@
 ## Nazwa robocza produktu
 zgoda
 
-## Nazwa publiczna (do decyzji)
-- zgoda.online (rekomendowane)
-- zgoda.app
+## Nazwa publiczna
+Zgoda.Online
 
-👉 Do ustalenia: jedna nazwa we wszystkich kanałach
-
----
+## URL
+https://zgoda.online
 
 ## Czym jest produkt
 
-Zgoda to platforma webowa do zarządzania zgodami i organizacją wyjazdów w klubach sportowych, szkołach i organizacjach.
+Zgoda.Online to platforma webowa do nowoczesnej obsługi zgód dla klubów sportowych.
 
 System pozwala:
-- tworzyć wyjazdy
-- generować zgody PDF
-- wysyłać dokumenty do rodziców
-- monitorować statusy i dokumenty
-
----
+- organizować wyjazdy i wydarzenia,
+- generować zgody PDF,
+- wysyłać dokumenty do rodziców i opiekunów,
+- monitorować statusy i historię dokumentów,
+- porządkować dane uczestników, grup i organizacji w jednym miejscu.
 
 ## Główny problem
 
-Organizacja wyjazdów i zgód jest rozproszona:
-- Excel
-- papier
-- WhatsApp / mail
-- pamięć ludzi
-
-👉 brak kontroli i dużo ręcznej pracy
-
----
+Obsługa zgód w klubach sportowych jest rozproszona między Excelem, papierem, e-mailami i pamięcią ludzi. To powoduje chaos, błędy i dużą ilość ręcznej pracy.
 
 ## Główne rozwiązanie
 
-Zgoda zamyka cały proces w jednym systemie:
+Zgoda.Online zamyka cały proces w jednym systemie:
 
-- organizacja działa w swojej przestrzeni (subdomena)
-- użytkownicy pracują w rolach
-- grupy pozwalają działać masowo
-- zgody generowane automatycznie
-- dokumenty trafiają do właściwych osób
-- statusy są widoczne w systemie
-
----
+- każda organizacja działa w swojej przestrzeni,
+- użytkownicy pracują w rolach,
+- grupy pozwalają działać masowo,
+- zgody są generowane automatycznie,
+- dokumenty trafiają do właściwych opiekunów,
+- statusy są widoczne online,
+- trener może szybciej utworzyć wyjazd i przygotować dokumenty.
 
 ## Dla kogo
 
-### Główny segment (REKOMENDACJA START)
-👉 kluby sportowe
+### Główny segment
+Kluby sportowe
 
-### Kolejne:
-- szkoły
-- organizatorzy wyjazdów
-
----
+### Użytkownicy
+- administrator organizacji
+- trener / opiekun
+- rodzic / opiekun prawny
+- uczestnik
+- dziecko jako obiekt danych
 
 ## Główna wartość
 
-- oszczędność czasu
-- koniec ręcznego przepisywania
-- porządek w dokumentach
-- kontrola statusów
+- mniej ręcznej pracy,
+- porządek w dokumentach,
+- szybsza obsługa zgód,
+- kontrola statusów,
+- jedno miejsce do zarządzania zgodami i danymi uczestników.
 
----
+## Główna obietnica produktu
 
-## Moduły produktu (AKTYWNE)
+Nowoczesna obsługa zgód dla klubów sportowych
 
-### Organizacja
-- subdomena per organizacja
+## Moduły produktu (aktywne)
+
+### Organizacje
+- wydzielona przestrzeń danych per organizacja
 - użytkownicy i role
+- ustawienia organizacji
 
 ### Grupy
+- tworzenie grup
 - przypisania uczestników i rodziców
-- działanie na grupach
+- praca na grupach zamiast ręcznego wybierania osób
 
 ### Wyjazdy / wydarzenia
-- kontekst zgody (daty, miejsce)
+- tworzenie wydarzenia / wyjazdu
+- kontekst zgody: miejsce, daty, opiekunowie
+- przypisanie grup i uczestników
 
 ### Zgody
-- szablony PDF
-- generowanie dokumentów
+- szablony PDF per organizacja
+- generowanie osobnych dokumentów
 - wysyłka do opiekunów
+- historia i rejestr dokumentów
 
-### Rejestry
-- statusy dokumentów
-- historia
+### Rejestry i statusy
+- status zgody
+- historia zmian
+- eksport danych
 
----
+### AI Trip Assistant
+- głosowe lub tekstowe uzupełnianie formularza wyjazdu
+- sugestie danych do formularza
+- AI jako warstwa przyspieszająca proces
 
-## Moduły NIEAKTYWNE (nie komunikujemy)
+## Moduły nieaktywne / wyłączone z komunikacji
 
 ### Certyfikaty / szkolenia
-👉 ZABLOKOWANE — nie używać w komunikacji
-
----
-
-## AI (warstwa)
-
-AI NIE jest produktem.
-
-AI:
-- przyspiesza tworzenie wyjazdu
-- wypełnia formularz (voice/text)
-- sugeruje dane
-
-👉 AI = przyspieszenie procesu, nie core
-
----
+Nie komunikujemy ich w obecnej wersji produktu.
 
 ## Główne komunikaty sprzedażowe
 
-- Zgody na wyjazdy w 3 kliknięciach
+- Nowoczesna obsługa zgód dla klubów sportowych
 - Koniec z chaosem w papierach
-- Jedno miejsce do zarządzania dokumentami
+- Wszystkie zgody w jednym miejscu
+- Szybsze przygotowanie wyjazdów i dokumentów
 - Status każdej zgody pod ręką
 
----
+## CTA
 
-## CTA (ustalamy jeden główny)
-
-👉 REKOMENDACJA:
 Zobacz jak to działa
-
----
 
 ## Priorytet komunikacji
 
-1. zgody i wyjazdy (core)
+1. zgody i wyjazdy
 2. proces użytkownika
-3. AI jako warstwa
-
----
+3. AI jako warstwa przyspieszająca
 
 ## Filary contentu
 
-### SERIA 1 — Fundament
-- organizacje
+### Seria 1 — Fundament systemu
+- organizacja
 - role
 - grupy
 - wyjazdy
 - zgody
 - statusy
+- dokumenty
 
-### SERIA 2 — AI
+### Seria 2 — AI
 - voice input
-- automatyzacja
+- automatyzacja formularza wyjazdu
+- prefill danych
+- learnings z wdrożenia AI
 
-### SERIA 3 — Build in public
-- proces budowy
+### Seria 3 — Build in public
+- proces budowy produktu
 - decyzje
-- bugi
+- błędy
+- iteracje
 
----
+## Zasady operacyjne
 
-## Zasady
-
-- content wynika z produktu
-- nie komunikujemy wszystkiego
-- prostota > szczegóły
-- jeden problem = jeden content
+- content wynika z produktu i materiałów źródłowych,
+- nie komunikujemy wszystkiego naraz,
+- jeden Content Unit = jeden problem lub jedna funkcja,
+- prostota i konkret wygrywają z ogólnością,
+- AI nie jest fundamentem narracji — jest warstwą.

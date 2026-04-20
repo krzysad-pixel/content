@@ -1,126 +1,85 @@
 # Gaps — zgoda
 
-## Krytyczne braki do domknięcia
+## Ustalone decyzje
 
-### 1. Jedna nazwa produktu
-W materiałach funkcjonują równolegle:
-- zgoda.online
-- zgoda.app
-- zgoda2.app
+### 1. Nazwa produktu
+Zgoda.Online
 
-Do decyzji:
-- jedna nazwa publiczna,
-- jeden slug repo,
-- jedna nazwa do social i landingów.
+### 2. Segment startowy
+Kluby sportowe
 
-### 2. ICP i priorytet segmentów
-Produkt ma kilka możliwych segmentów:
-- kluby sportowe,
-- szkoły,
-- organizatorzy wyjazdów,
-- firmy szkoleniowe.
+### 3. Zakres komunikacji
+Na start komunikujemy tylko zgody i wyjazdy.
 
-Do decyzji:
-- który segment jest pierwszy,
-- jaki jest główny landing hero,
-- czy komunikacja ma iść jedną ścieżką czy dwiema: zgody / certyfikaty.
+### 4. CTA
+Zobacz jak to działa
 
-### 3. Jedna główna obietnica produktu
-W materiałach są różne osie:
-- zgody,
-- certyfikaty,
-- szkolenia,
-- wyjazdy,
-- dokumenty.
+### 5. URL
+https://zgoda.online
 
-Do decyzji:
-- jaki jest główny komunikat sprzedażowy na start,
-- czy produkt jest pozycjonowany jako:
-  - system zgód,
-  - system zgód i certyfikatów,
-  - platforma organizacyjna dla klubów i szkoleń.
+## Otwarte decyzje
 
-### 4. Finalne CTA
-W materiałach występują:
-- Załóż konto
-- Zobacz jak to działa
-- Wygeneruj pierwszą zgodę
-- Wystaw certyfikat po szkoleniu
+### 1. Główna obietnica produktu
+Aktualna wersja:
+Nowoczesna obsługa zgód dla klubów sportowych
 
-Do decyzji:
-- główne CTA dla strony głównej,
-- CTA dla ścieżki „zgody”,
-- CTA dla ścieżki „certyfikaty”.
+Do dalszego testu:
+- czy to jest finalne hasło główne,
+- czy potrzebna jest jeszcze mocniejsza wersja landing hero.
 
-### 5. Priorytet modułów w MVP komunikacyjnym
-Produkt ma dwa mocne nurty:
-- zgody,
-- szkolenia i certyfikaty.
+## Niespójności do usunięcia
 
-Do decyzji:
-- czy komunikacja startuje od zgód,
-- czy od razu od dwóch produktów / dwóch ścieżek,
-- czy certyfikaty są drugą falą.
+### 2. Certyfikaty w starszych materiałach
+W części starszych materiałów certyfikaty i szkolenia występują jako aktywny produkt lub druga ścieżka komunikacji.
+
+Do zrobienia:
+- usunąć tę narrację z aktywnej komunikacji,
+- zostawić jako materiał archiwalny / przyszłościowy,
+- nie budować na tym obecnych CU.
 
 ## Braki contentowe
 
-### 6. Brak pełnej bazy Content Units
-Masz już model systemu i pierwsze 8 CU, ale baza nie jest jeszcze kompletna.
-
+### 3. Brak pełnej bazy Content Units
+Aktualnie mamy starter.
 Do zrobienia:
-- rozwinąć minimum do 20–30 CU,
-- przypisać statusy,
-- przypisać platformy,
-- dodać CTA z prawdziwym URL.
+- rozwinąć bazę do minimum 20–30 CU,
+- dopasować CU do nowego foundation,
+- wzmocnić wątki: zgody, wyjazdy, grupy, statusy, AI Trip Assistant.
 
-### 7. Brak finalnych serii publikacji z kolejnością
-Jest ogólna logika serii, ale nie ma jeszcze:
-- dokładnej kolejności,
-- priorytetu na pierwsze 4–6 publikacji,
-- harmonogramu.
+### 4. Brak ustalonej kolejności publikacji
+Do zrobienia:
+- ustalić kolejność pierwszych publikacji,
+- wybrać pierwsze 3–5 CU do realizacji,
+- przypisać priorytet.
 
-### 8. Brak gotowych scenariuszy dla wszystkich pierwszych CU
-Na dziś jest logika systemu, ale nie ma kompletnego pakietu scenariuszy do publikacji.
-
-## Braki produktowo-ofertowe
-
-### 9. Cennik i limity
-W materiałach są propozycje, ale nadal oznaczone jako do potwierdzenia.
-
-Do decyzji:
-- finalne pakiety,
-- limity,
-- dodatki,
-- komunikacja cenowa na landing.
-
-### 10. Zakres AI
-AI jest ustalone jako druga seria komunikacji, ale nie ma jeszcze finalnie zamkniętego zakresu:
-- co jest realnie wdrożone,
-- co jest eksperymentem,
-- co komunikujemy publicznie.
+### 5. Brak scenariuszy publikacji
+Do zrobienia:
+- przygotować scenariusze rolek i postów,
+- spiąć je z CU,
+- zbudować pierwszy cykl publikacyjny.
 
 ## Braki operacyjne
 
-### 11. Źródło prawdy w repo
-Docelowo źródłem prawdy powinny być:
-- `foundation.md`
-- `gaps.md`
-- `units/`
+### 6. Assety do publikacji
+Do zrobienia po stronie operacyjnej:
+- screeny UI,
+- krótkie demo flow,
+- materiały do pierwszych publikacji.
 
-Do domknięcia:
-- ujednolicenie starych materiałów,
-- przeniesienie roboczych notatek do modelu repo-first,
-- archiwizacja starszych wersji.
+To nie blokuje pracy nad foundation, gaps i CU.
+To zablokuje dopiero gotową produkcję materiałów.
 
-### 12. Linki i assety do CTA
-Brakuje jednego, finalnego zestawu:
-- docelowego URL,
-- screenów do pierwszych publikacji,
-- krótkich dem do wykorzystania w Reels / Shorts.
+### 7. Finalne uporządkowanie źródeł
+Do zrobienia:
+- dopiąć starsze materiały do modelu repo-first,
+- zostawić tylko aktualne źródła jako source of truth,
+- archiwizować niespójne lub stare wersje.
 
-## Decyzje rekomendowane jako pierwsze
-1. Ustal jedną nazwę publiczną produktu.
-2. Wybierz główny segment na start.
-3. Zdecyduj, czy komunikacja startuje od „zgód”, czy od „zgód i certyfikatów”.
-4. Ustal jedno główne CTA.
-5. Rozwiń bazę CU do minimum 20 pozycji.
+## Rekomendowane kolejne kroki
+
+1. Zaktualizować foundation.md
+2. Zaktualizować gaps.md
+3. Zaktualizować istniejące CU do nowego kierunku
+4. Rozwinąć bazę CU do 20+
+5. Wybrać pierwsze CU do realizacji
+6. Przygotować scenariusze publikacji
