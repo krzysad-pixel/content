@@ -4,9 +4,12 @@ product: zgoda
 module: wyjazdy
 type: feature
 role: sales
-status: backlog
-platform: [instagram, linkedin, blog]
-published_at:
+status: archived
+platform:
+  - instagram
+  - linkedin
+  - blog
+published_at: null
 ---
 
 # Wyjazd gotowy do wysyłki zgód w kilka minut
