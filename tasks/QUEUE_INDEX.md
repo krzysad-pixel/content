@@ -10,8 +10,7 @@
 
 | Priorytet | Task | Plik | Status | Zależności |
 |-----------|------|------|--------|-----------|
-| 1 | TASK-007 — Ikona kopiuj w podglądzie CU | `tasks/queue/TASK-007-copy-icon-cu-detail.md` | todo | — |
-| 2 | TASK-008 — Edycja treści CU w UI | `tasks/queue/TASK-008-edycja-cu-w-ui.md` | todo | — |
+| *(pusto)* | | | | |
 
 ## Zrealizowane taski
 
@@ -24,3 +23,4 @@
 | TASK-005 | Sync to Git (endpoint + UI) | 2026-04-20 |
 | TASK-006 | Dashboard produktu | 2026-04-20 |
 | TASK-007 | Ikona kopiuj w podglądzie CU | 2026-04-20 |
+| TASK-008 | Edycja treści CU w UI | 2026-04-20 |

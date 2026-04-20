@@ -114,6 +114,8 @@ async function changeStatus(id, status) {
 }
 
 let currentDetailBody = '';
+let currentDetailId = null;
+let currentDetailMeta = null;
 
 async function copyTextToClipboard(text) {
   if (navigator.clipboard && window.isSecureContext) {
@@ -156,26 +158,108 @@ async function copyDetailBody() {
   }
 }
 
+function renderDetailView(title) {
+  const fm = currentDetailMeta || {};
+  els.detailContent.innerHTML = `
+    <div class="detail-header">
+      <h2>${escapeHtml(title || currentDetailId || '')}</h2>
+      <div class="detail-actions">
+        <button id="detail-edit" type="button" class="edit-btn" title="Edytuj treść CU">✎ Edytuj</button>
+        <button id="detail-copy" type="button" class="copy-btn" title="Kopiuj treść CU">📋 Kopiuj</button>
+      </div>
+    </div>
+    <div class="meta">
+      <strong>${escapeHtml(currentDetailId || '')}</strong> · ${escapeHtml(fm.product || '')} / ${escapeHtml(fm.module || '')} ·
+      ${escapeHtml(fm.type || '')} · ${escapeHtml(fm.role || '')} · ${statusBadge(fm.status)}
+    </div>
+    <pre>${escapeHtml(currentDetailBody)}</pre>
+    <div id="detail-feedback" class="detail-feedback" aria-live="polite"></div>
+  `;
+  document.getElementById('detail-copy').addEventListener('click', copyDetailBody);
+  document.getElementById('detail-edit').addEventListener('click', enterEditMode);
+}
+
+function renderDetailEdit(title) {
+  const fm = currentDetailMeta || {};
+  els.detailContent.innerHTML = `
+    <div class="detail-header">
+      <h2>${escapeHtml(title || currentDetailId || '')}</h2>
+      <div class="detail-actions">
+        <button id="detail-save" type="button" class="save-btn">💾 Zapisz</button>
+        <button id="detail-cancel" type="button" class="cancel-btn">Anuluj</button>
+      </div>
+    </div>
+    <div class="meta">
+      <strong>${escapeHtml(currentDetailId || '')}</strong> · ${escapeHtml(fm.product || '')} / ${escapeHtml(fm.module || '')} ·
+      ${escapeHtml(fm.type || '')} · ${escapeHtml(fm.role || '')} · ${statusBadge(fm.status)}
+    </div>
+    <textarea id="detail-editor" class="detail-editor" spellcheck="false"></textarea>
+    <div id="detail-feedback" class="detail-feedback" aria-live="polite"></div>
+  `;
+  const ta = document.getElementById('detail-editor');
+  ta.value = currentDetailBody;
+  ta.focus();
+  document.getElementById('detail-save').addEventListener('click', saveDetailContent);
+  document.getElementById('detail-cancel').addEventListener('click', () => renderDetailView(title));
+}
+
+function enterEditMode() {
+  const title = (currentDetailMeta && currentDetailMeta.title) || currentDetailId;
+  renderDetailEdit(title);
+}
+
+async function saveDetailContent() {
+  const ta = document.getElementById('detail-editor');
+  const saveBtn = document.getElementById('detail-save');
+  const cancelBtn = document.getElementById('detail-cancel');
+  if (!ta || !saveBtn) return;
+  const newBody = ta.value;
+  saveBtn.disabled = true;
+  cancelBtn.disabled = true;
+  saveBtn.textContent = 'Zapisuję…';
+  try {
+    await api(`/api/units/${encodeURIComponent(currentDetailId)}/content`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ body: newBody }),
+    });
+    currentDetailBody = newBody;
+    const title = (currentDetailMeta && currentDetailMeta.title) || currentDetailId;
+    renderDetailView(title);
+    const fb = document.getElementById('detail-feedback');
+    if (fb) {
+      fb.textContent = '✓ Zapisano';
+      fb.classList.add('ok');
+      setTimeout(() => {
+        fb.textContent = '';
+        fb.classList.remove('ok');
+      }, 2000);
+    }
+  } catch (err) {
+    saveBtn.disabled = false;
+    cancelBtn.disabled = false;
+    saveBtn.textContent = '💾 Zapisz';
+    alert('Nie udało się zapisać: ' + err.message);
+  }
+}
+
 async function showDetail(id) {
   if (!id) return;
   els.detail.classList.remove('hidden');
   els.detailContent.innerHTML = '<p>Ładowanie…</p>';
   try {
     const unit = await api(`/api/units/${encodeURIComponent(id)}`);
+    currentDetailId = unit.id;
     currentDetailBody = unit.body || '';
-    const fm = unit.frontmatter || {};
-    els.detailContent.innerHTML = `
-      <div class="detail-header">
-        <h2>${unit.title || unit.id}</h2>
-        <button id="detail-copy" type="button" class="copy-btn" title="Kopiuj treść CU">📋 Kopiuj</button>
-      </div>
-      <div class="meta">
-        <strong>${unit.id}</strong> · ${fm.product || ''} / ${fm.module || ''} ·
-        ${fm.type || ''} · ${fm.role || ''} · ${statusBadge(fm.status)}
-      </div>
-      <pre>${escapeHtml(unit.body || '')}</pre>
-    `;
-    document.getElementById('detail-copy').addEventListener('click', copyDetailBody);
+    currentDetailMeta = {
+      title: unit.title,
+      product: (unit.frontmatter || {}).product || '',
+      module: (unit.frontmatter || {}).module || '',
+      type: (unit.frontmatter || {}).type || '',
+      role: (unit.frontmatter || {}).role || '',
+      status: (unit.frontmatter || {}).status || '',
+    };
+    renderDetailView(unit.title || unit.id);
   } catch (err) {
     els.detailContent.innerHTML = `<p>Błąd: ${err.message}</p>`;
   }

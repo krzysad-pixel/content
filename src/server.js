@@ -237,6 +237,22 @@ app.patch('/api/units/:id/status', async (req, res) => {
   }
 });
 
+app.patch('/api/units/:id/content', async (req, res) => {
+  try {
+    const { body } = req.body || {};
+    if (typeof body !== 'string') {
+      return res.status(400).json({ error: 'body must be a string' });
+    }
+    const unit = await findUnitFile(req.params.id);
+    if (!unit) return res.status(404).json({ error: 'Unit not found' });
+    const newContent = matter.stringify(body, unit.frontmatter);
+    await fsp.writeFile(unit.filePath, newContent, 'utf8');
+    res.json({ id: unit.frontmatter.id, saved: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 function syncTimestamp() {
   const d = new Date();
   const pad = (n) => String(n).padStart(2, '0');
