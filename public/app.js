@@ -6,18 +6,32 @@ const els = {
   status: document.getElementById('filter-status'),
   type: document.getElementById('filter-type'),
   refresh: document.getElementById('refresh-btn'),
+  sync: document.getElementById('sync-btn'),
+  syncModal: document.getElementById('sync-modal'),
+  syncContent: document.getElementById('sync-content'),
+  syncClose: document.getElementById('sync-close'),
   detail: document.getElementById('detail-panel'),
   detailContent: document.getElementById('detail-content'),
   detailClose: document.getElementById('detail-close'),
 };
 
+const COLSPAN = 9;
+
 async function api(path, options) {
   const res = await fetch(path, options);
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({ error: res.statusText }));
-    throw new Error(err.error || `HTTP ${res.status}`);
+  let body = null;
+  try {
+    body = await res.json();
+  } catch {
+    body = null;
   }
-  return res.json();
+  if (!res.ok) {
+    const msg = (body && body.error) || res.statusText || `HTTP ${res.status}`;
+    const err = new Error(msg);
+    err.body = body;
+    throw err;
+  }
+  return body;
 }
 
 async function loadProducts() {
@@ -40,6 +54,12 @@ function statusBadge(status) {
   return `<span class="badge badge-${s}">${s}</span>`;
 }
 
+function validityBadge(unit) {
+  if (unit.valid) return '<span class="badge badge-valid">OK</span>';
+  const tip = (unit.errors || []).join(', ').replace(/"/g, '&quot;');
+  return `<span class="badge badge-invalid" title="${tip}">invalid</span>`;
+}
+
 function statusActions(unit) {
   return STATUSES
     .filter((s) => s !== unit.status)
@@ -49,11 +69,11 @@ function statusActions(unit) {
 
 function renderUnits(units) {
   if (!units.length) {
-    els.tbody.innerHTML = '<tr><td colspan="8" class="empty">Brak wyników</td></tr>';
+    els.tbody.innerHTML = `<tr><td colspan="${COLSPAN}" class="empty">Brak wyników</td></tr>`;
     return;
   }
   els.tbody.innerHTML = units.map((u) => `
-    <tr data-id="${u.id}">
+    <tr data-id="${u.id || ''}" class="${u.valid ? '' : 'row-invalid'}">
       <td>${u.id || ''}</td>
       <td>${u.title || ''}</td>
       <td>${u.product || ''}</td>
@@ -61,18 +81,19 @@ function renderUnits(units) {
       <td>${u.type || ''}</td>
       <td>${u.role || ''}</td>
       <td>${statusBadge(u.status)}</td>
-      <td><div class="actions">${statusActions(u)}</div></td>
+      <td>${validityBadge(u)}</td>
+      <td><div class="actions">${u.id ? statusActions(u) : ''}</div></td>
     </tr>
   `).join('');
 }
 
 async function loadUnits() {
-  els.tbody.innerHTML = '<tr><td colspan="8" class="empty">Ładowanie…</td></tr>';
+  els.tbody.innerHTML = `<tr><td colspan="${COLSPAN}" class="empty">Ładowanie…</td></tr>`;
   try {
     const units = await api(`/api/units${buildQuery()}`);
     renderUnits(units);
   } catch (err) {
-    els.tbody.innerHTML = `<tr><td colspan="8" class="empty">Błąd: ${err.message}</td></tr>`;
+    els.tbody.innerHTML = `<tr><td colspan="${COLSPAN}" class="empty">Błąd: ${err.message}</td></tr>`;
   }
 }
 
@@ -86,6 +107,7 @@ async function changeStatus(id, status) {
 }
 
 async function showDetail(id) {
+  if (!id) return;
   els.detail.classList.remove('hidden');
   els.detailContent.innerHTML = '<p>Ładowanie…</p>';
   try {
@@ -105,9 +127,71 @@ async function showDetail(id) {
 }
 
 function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, (c) => ({
+  return String(s).replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   }[c]));
+}
+
+function openSyncModal() {
+  els.syncModal.classList.remove('hidden');
+}
+
+function closeSyncModal() {
+  els.syncModal.classList.add('hidden');
+}
+
+function renderSyncReport(result) {
+  const { ok, pulled, committed, pushed, report = {}, error } = result;
+  const added = report.added || [];
+  const changed = report.changed || [];
+  const invalid = report.invalid || [];
+
+  const statusRow = (label, done) =>
+    `<li>${done ? '✓' : '○'} ${label}</li>`;
+
+  const list = (title, items, renderItem) => items.length
+    ? `<h3>${title} (${items.length})</h3><ul class="sync-list">${items.map(renderItem).join('')}</ul>`
+    : `<h3>${title}</h3><p class="muted">— brak —</p>`;
+
+  els.syncContent.innerHTML = `
+    <p class="sync-summary ${ok ? 'ok' : 'err'}">
+      ${ok ? 'Zsynchronizowano.' : 'Sync zakończony błędem.'}
+    </p>
+    ${error ? `<pre class="sync-error">${escapeHtml(error)}</pre>` : ''}
+    <ul class="sync-steps">
+      ${statusRow('pull', pulled)}
+      ${statusRow(`commit${committed ? '' : ' (brak zmian)'}`, committed)}
+      ${statusRow('push', pushed)}
+    </ul>
+    ${list('Dodane', added, (f) => `<li>${escapeHtml(f)}</li>`)}
+    ${list('Zmienione', changed, (f) => `<li>${escapeHtml(f)}</li>`)}
+    ${list('Błędne', invalid, (it) =>
+      `<li><strong>${escapeHtml(it.file)}</strong><br /><span class="muted">${escapeHtml(it.errors.join(', '))}</span></li>`
+    )}
+  `;
+}
+
+async function runSync() {
+  els.sync.disabled = true;
+  els.sync.textContent = 'Sync…';
+  openSyncModal();
+  els.syncContent.innerHTML = '<p class="sync-summary">Trwa synchronizacja…</p>';
+  try {
+    const res = await fetch('/api/sync', { method: 'POST' });
+    let body = null;
+    try { body = await res.json(); } catch { body = null; }
+    if (!body) {
+      renderSyncReport({ ok: false, error: `HTTP ${res.status}` });
+    } else {
+      renderSyncReport(body);
+    }
+  } catch (err) {
+    renderSyncReport({ ok: false, error: err.message });
+  } finally {
+    els.sync.disabled = false;
+    els.sync.textContent = 'Sync';
+    await loadUnits();
+  }
 }
 
 els.tbody.addEventListener('click', (e) => {
@@ -125,8 +209,11 @@ els.product.addEventListener('change', loadUnits);
 els.status.addEventListener('change', loadUnits);
 els.type.addEventListener('change', loadUnits);
 els.refresh.addEventListener('click', loadUnits);
+els.sync.addEventListener('click', runSync);
+els.syncClose.addEventListener('click', closeSyncModal);
+els.syncModal.querySelector('.modal-backdrop').addEventListener('click', closeSyncModal);
 els.detailClose.addEventListener('click', () => els.detail.classList.add('hidden'));
 
 loadProducts().then(loadUnits).catch((err) => {
-  els.tbody.innerHTML = `<tr><td colspan="8" class="empty">Błąd startu: ${err.message}</td></tr>`;
+  els.tbody.innerHTML = `<tr><td colspan="${COLSPAN}" class="empty">Błąd startu: ${err.message}</td></tr>`;
 });

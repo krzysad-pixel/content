@@ -33,8 +33,18 @@
         </select>
       </label>
       <button id="refresh-btn" type="button">Odśwież</button>
+      <button id="sync-btn" type="button" class="sync-btn">Sync</button>
     </div>
   </header>
+
+  <div id="sync-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-body">
+      <button id="sync-close" type="button" class="close-btn">×</button>
+      <h2>Sync</h2>
+      <div id="sync-content"></div>
+    </div>
+  </div>
 
   <main>
     <section class="table-wrap">
@@ -48,11 +58,12 @@
             <th>Typ</th>
             <th>Rola</th>
             <th>Status</th>
+            <th>Walid.</th>
             <th>Akcje</th>
           </tr>
         </thead>
         <tbody id="units-tbody">
-          <tr><td colspan="8" class="empty">Ładowanie…</td></tr>
+          <tr><td colspan="9" class="empty">Ładowanie…</td></tr>
         </tbody>
       </table>
     </section>

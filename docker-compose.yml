@@ -5,5 +5,13 @@ services:
     ports:
       - "3333:3333"
     volumes:
-      - ./content:/app/content
+      - .:/app
+      - /app/node_modules
+      - /root/.git-credentials:/root/.git-credentials:ro
+      - /root/.gitconfig:/root/.gitconfig:ro
+    environment:
+      - GIT_AUTHOR_NAME=content-sync
+      - GIT_AUTHOR_EMAIL=content-sync@local
+      - GIT_COMMITTER_NAME=content-sync
+      - GIT_COMMITTER_EMAIL=content-sync@local
     restart: unless-stopped
