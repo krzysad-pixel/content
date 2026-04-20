@@ -11,6 +11,7 @@
 | Priorytet | Task | Plik | Status | Zależności |
 |-----------|------|------|--------|-----------|
 | 1 | Sync to Git | `tasks/queue/TASK-005-sync-to-git.md` | ready | — |
+| 2 | Dashboard produktu | `tasks/queue/TASK-006-product-dashboard.md` | ready | TASK-005 |
 
 ## Zrealizowane taski
 
