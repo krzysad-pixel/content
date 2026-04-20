@@ -281,30 +281,6 @@ app.post('/api/sync', async (_req, res) => {
       return res.status(502).json(result);
     }
 
-    const { stdout: afterSha } = await git(['rev-parse', 'HEAD']);
-    const afterFiles = await listUnitFilesRelative();
-    const afterFilesSet = new Set(afterFiles);
-
-    if (beforeSha.trim() !== afterSha.trim()) {
-      try {
-        const { stdout } = await git([
-          'diff', '--name-status',
-          `${beforeSha.trim()}..${afterSha.trim()}`,
-          '--', 'content/products',
-        ]);
-        for (const line of stdout.split('\n')) {
-          if (!line.trim()) continue;
-          const [code, ...rest] = line.split('\t');
-          const file = rest[rest.length - 1];
-          if (!file || !file.endsWith('.md')) continue;
-          if (code.startsWith('A')) report.added.push(file);
-          else if (code.startsWith('M') || code.startsWith('R')) report.changed.push(file);
-        }
-      } catch {
-        for (const f of afterFiles) if (!beforeFiles.has(f)) report.added.push(f);
-      }
-    }
-
     for (const product of await listProducts()) {
       const units = await collectUnits(product);
       for (const u of units) {
@@ -326,6 +302,29 @@ app.post('/api/sync', async (_req, res) => {
       } catch (err) {
         result.error = `commit: ${(err.stderr || err.message).trim()}`;
         return res.status(500).json(result);
+      }
+    }
+
+    const { stdout: finalSha } = await git(['rev-parse', 'HEAD']);
+    const afterFiles = await listUnitFilesRelative();
+
+    if (beforeSha.trim() !== finalSha.trim()) {
+      try {
+        const { stdout } = await git([
+          'diff', '--name-status',
+          `${beforeSha.trim()}..${finalSha.trim()}`,
+          '--', 'content/products',
+        ]);
+        for (const line of stdout.split('\n')) {
+          if (!line.trim()) continue;
+          const [code, ...rest] = line.split('\t');
+          const file = rest[rest.length - 1];
+          if (!file || !file.endsWith('.md')) continue;
+          if (code.startsWith('A')) report.added.push(file);
+          else if (code.startsWith('M') || code.startsWith('R')) report.changed.push(file);
+        }
+      } catch {
+        for (const f of afterFiles) if (!beforeFiles.has(f)) report.added.push(f);
       }
     }
 
