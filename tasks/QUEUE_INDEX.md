@@ -10,7 +10,8 @@
 
 | Priorytet | Task | Plik | Status | Zależności |
 |-----------|------|------|--------|-----------|
-| *(pusto)* | | | | |
+| 1 | TASK-007 — Ikona kopiuj w podglądzie CU | `tasks/queue/TASK-007-copy-icon-cu-detail.md` | todo | — |
+| 2 | TASK-008 — Edycja treści CU w UI | `tasks/queue/TASK-008-edycja-cu-w-ui.md` | todo | — |
 
 ## Zrealizowane taski
 
