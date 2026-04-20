@@ -4,13 +4,13 @@
 
 ## Aktualny aktywny task
 
-**Brak** — kolejka pusta.
+**Brak**
 
 ## Kolejka (w kolejności realizacji)
 
 | Priorytet | Task | Plik | Status | Zależności |
 |-----------|------|------|--------|-----------|
-| *(pusto)* | | | | |
+| 1 | TASK-007 — Ikona kopiuj w podglądzie CU | `tasks/queue/TASK-007-copy-icon-cu-detail.md` | todo | — |
 
 ## Zrealizowane taski
 
