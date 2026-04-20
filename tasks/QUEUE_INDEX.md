@@ -4,13 +4,13 @@
 
 ## Aktualny aktywny task
 
-**Brak** — wszystkie taski MVP zrealizowane.
+**Brak** — zacznij od TASK-005
 
 ## Kolejka (w kolejności realizacji)
 
 | Priorytet | Task | Plik | Status | Zależności |
 |-----------|------|------|--------|-----------|
-| *(pusto)* | | | | |
+| 1 | Sync to Git | `tasks/queue/TASK-005-sync-to-git.md` | ready | — |
 
 ## Zrealizowane taski
 
