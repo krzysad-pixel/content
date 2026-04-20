@@ -115,11 +115,33 @@ async function changeStatus(id, status) {
 
 let currentDetailBody = '';
 
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.top = '0';
+  ta.style.left = '0';
+  ta.style.opacity = '0';
+  ta.style.pointerEvents = 'none';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    if (!document.execCommand('copy')) throw new Error('execCommand copy failed');
+  } finally {
+    document.body.removeChild(ta);
+  }
+}
+
 async function copyDetailBody() {
   const btn = document.getElementById('detail-copy');
   if (!btn) return;
   try {
-    await navigator.clipboard.writeText(currentDetailBody);
+    await copyTextToClipboard(currentDetailBody);
     const orig = btn.innerHTML;
     btn.innerHTML = '✓ Skopiowano!';
     btn.classList.add('copied');
