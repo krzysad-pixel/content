@@ -27,6 +27,9 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.sendStatus(204);
+  if (req.path.startsWith('/api/')) {
+    res.setHeader('Cache-Control', 'no-store');
+  }
   next();
 });
 
@@ -248,8 +251,14 @@ app.post('/api/sync', async (_req, res) => {
     const { stdout: beforeSha } = await git(['rev-parse', 'HEAD']);
     const beforeFiles = new Set(await listUnitFilesRelative());
 
+    let branch = 'main';
     try {
-      await git(['pull', 'origin', 'main']);
+      const { stdout: b } = await git(['rev-parse', '--abbrev-ref', 'HEAD']);
+      branch = b.trim() || 'main';
+    } catch { /* fallback to main */ }
+
+    try {
+      await git(['pull', 'origin', branch]);
       result.pulled = true;
     } catch (err) {
       result.error = `pull: ${(err.stderr || err.message).trim()}`;
@@ -305,7 +314,7 @@ app.post('/api/sync', async (_req, res) => {
     }
 
     try {
-      await git(['push', 'origin', 'main']);
+      await git(['push', 'origin', branch]);
       result.pushed = true;
     } catch (err) {
       result.error = `push: ${(err.stderr || err.message).trim()}`;
