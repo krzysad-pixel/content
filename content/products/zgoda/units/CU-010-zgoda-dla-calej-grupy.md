@@ -9,23 +9,25 @@ platform: [instagram, linkedin, tiktok]
 published_at:
 ---
 
-# Jedna akcja zamiast pracy na każdym dziecku osobno
+# Jedna akcja zamiast chaosu z danymi i wysyłką
 
 ## Problem
-Przy dużej grupie ręczne przygotowywanie zgód dla każdego uczestnika zajmuje dużo czasu i zwiększa ryzyko błędu.
+Najtrudniejsze przy zgodach nie jest ich przygotowanie, tylko zebranie danych i wysłanie dokumentów do wszystkich opiekunów.
+
+Maile są w Excelu, część w telefonie, część na WhatsAppie. Łatwo kogoś pominąć albo wysłać dokument nie do tej osoby.
 
 ## Rozwiązanie
-W Zgoda.Online wybierasz całą grupę i system generuje osobny dokument dla każdego uczestnika.
+W Zgoda.Online pracujesz na grupie, a system zna relacje między dzieckiem a opiekunami i wysyła dokumenty do właściwych osób automatycznie.
 
 ## Efekt (Before / After)
-**Before:** Każde dziecko trzeba obsłużyć osobno.
-**After:** Jedna operacja tworzy komplet zgód dla całej grupy.
+**Before:** Chaos w danych, ręczne wysyłanie, ryzyko pomyłek i brak kontroli.  
+**After:** Jedna akcja tworzy i wysyła komplet zgód do wszystkich właściwych opiekunów.
 
 ## Hook
-Nie pracujesz na 30 dzieciach. Pracujesz na jednej grupie.
+Najtrudniejsze nie jest zrobić zgodę. Najtrudniejsze to wysłać ją do wszystkich.
 
 ## CTA
 Wygeneruj pierwszą zgodę → https://zgoda.online
 
 ## Notatki
-Mocny materiał pod rolkę sprzedażową. Uwaga: podobny kąt jak CU-005 — do weryfikacji, czy oba mają miejsce.
+Bardzo mocny unit sprzedażowy. Idealny kontekst: wyjazd drużyny na turniej lub obóz.
