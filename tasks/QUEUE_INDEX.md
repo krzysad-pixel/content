@@ -4,13 +4,13 @@
 
 ## Aktualny aktywny task
 
-**Brak** — następny: TASK-006
+**Brak** — kolejka pusta.
 
 ## Kolejka (w kolejności realizacji)
 
 | Priorytet | Task | Plik | Status | Zależności |
 |-----------|------|------|--------|-----------|
-| 1 | Dashboard produktu | `tasks/queue/TASK-006-product-dashboard.md` | ready | — |
+| *(pusto)* | | | | |
 
 ## Zrealizowane taski
 
@@ -21,3 +21,4 @@
 | TASK-003 | Frontend UI (vanilla HTML/JS) | 2026-04-20 |
 | TASK-004 | Dockeryzacja + uruchomienie na VM | 2026-04-20 |
 | TASK-005 | Sync to Git (endpoint + UI) | 2026-04-20 |
+| TASK-006 | Dashboard produktu | 2026-04-20 |

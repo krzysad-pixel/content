@@ -189,6 +189,121 @@ td.empty {
 }
 .muted { color: #888; font-size: 13px; margin: 4px 0; }
 
+.view.hidden { display: none; }
+
+.back-btn {
+  background: transparent;
+  border: 1px solid #cfd3da;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 12px;
+}
+.back-btn:hover { background: #eef2ff; }
+
+#view-product {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e2e5ea;
+  border-radius: 6px;
+  padding: 20px 24px;
+}
+
+#view-product > h2 {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  text-transform: capitalize;
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.stat {
+  flex: 1 1 120px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  background: #f8f9fb;
+  border: 1px solid #e2e5ea;
+}
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #666;
+  margin-top: 6px;
+}
+.stat-total { border-color: #cfd3da; }
+.stat-total .stat-value { color: #111827; }
+.stat-backlog { border-color: #d1d5db; background: #f3f4f6; }
+.stat-backlog .stat-value { color: #374151; }
+.stat-ready { border-color: #bfdbfe; background: #eff6ff; }
+.stat-ready .stat-value { color: #1d4ed8; }
+.stat-published { border-color: #a7f3d0; background: #ecfdf5; }
+.stat-published .stat-value { color: #047857; }
+.stat-archived { border-color: #fecaca; background: #fef2f2; }
+.stat-archived .stat-value { color: #b91c1c; }
+
+.product-doc {
+  margin-top: 24px;
+}
+.product-doc > h3 {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6b7280;
+  border-bottom: 1px solid #e2e5ea;
+  padding-bottom: 6px;
+}
+
+.markdown {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1f2937;
+}
+.markdown h1 { font-size: 22px; margin: 18px 0 8px; }
+.markdown h2 { font-size: 18px; margin: 16px 0 6px; }
+.markdown h3 { font-size: 15px; margin: 14px 0 4px; }
+.markdown p { margin: 6px 0; }
+.markdown ul, .markdown ol { margin: 6px 0; padding-left: 22px; }
+.markdown li { margin: 2px 0; }
+.markdown code {
+  background: #f1f5f9;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+.markdown pre {
+  background: #f1f5f9;
+  padding: 10px 12px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+.markdown blockquote {
+  border-left: 3px solid #cbd5e1;
+  padding-left: 10px;
+  color: #4b5563;
+  margin: 8px 0;
+}
+.markdown .task-list-item { list-style: none; margin-left: -22px; }
+.markdown input[type="checkbox"] { margin-right: 6px; }
+
+.product-link {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+.product-link:hover { text-decoration: underline; }
+
 .actions {
   display: flex;
   gap: 4px;

@@ -13,6 +13,13 @@ const els = {
   detail: document.getElementById('detail-panel'),
   detailContent: document.getElementById('detail-content'),
   detailClose: document.getElementById('detail-close'),
+  viewList: document.getElementById('view-list'),
+  viewProduct: document.getElementById('view-product'),
+  backToList: document.getElementById('back-to-list'),
+  productName: document.getElementById('product-name'),
+  productStats: document.getElementById('product-stats'),
+  productFoundation: document.getElementById('product-foundation'),
+  productGaps: document.getElementById('product-gaps'),
 };
 
 const COLSPAN = 9;
@@ -76,7 +83,7 @@ function renderUnits(units) {
     <tr data-id="${u.id || ''}" class="${u.valid ? '' : 'row-invalid'}">
       <td>${u.id || ''}</td>
       <td>${u.title || ''}</td>
-      <td>${u.product || ''}</td>
+      <td><a href="#/product/${encodeURIComponent(u.product || '')}" class="product-link" data-product="${u.product || ''}">${u.product || ''}</a></td>
       <td>${u.module || ''}</td>
       <td>${u.type || ''}</td>
       <td>${u.role || ''}</td>
@@ -201,9 +208,62 @@ els.tbody.addEventListener('click', (e) => {
     changeStatus(btn.dataset.id, btn.dataset.status).catch((err) => alert(err.message));
     return;
   }
+  const link = e.target.closest('a.product-link');
+  if (link) {
+    return;
+  }
   const row = e.target.closest('tr[data-id]');
-  if (row) showDetail(row.dataset.id);
+  if (row && row.dataset.id) showDetail(row.dataset.id);
 });
+
+function showListView() {
+  els.viewProduct.classList.add('hidden');
+  els.viewList.classList.remove('hidden');
+}
+
+function showProductView() {
+  els.viewList.classList.add('hidden');
+  els.viewProduct.classList.remove('hidden');
+}
+
+function renderStats(stats) {
+  const items = [
+    { k: 'total', label: 'Total' },
+    { k: 'backlog', label: 'Backlog' },
+    { k: 'ready', label: 'Ready' },
+    { k: 'published', label: 'Published' },
+    { k: 'archived', label: 'Archived' },
+  ];
+  els.productStats.innerHTML = items.map((it) =>
+    `<div class="stat stat-${it.k}"><div class="stat-value">${stats[it.k] ?? 0}</div><div class="stat-label">${it.label}</div></div>`
+  ).join('');
+}
+
+async function loadProduct(product) {
+  showProductView();
+  els.productName.textContent = product;
+  els.productStats.innerHTML = '<p class="muted">Ładowanie…</p>';
+  els.productFoundation.innerHTML = '';
+  els.productGaps.innerHTML = '';
+  try {
+    const data = await api(`/api/products/${encodeURIComponent(product)}`);
+    renderStats(data.stats || {});
+    els.productFoundation.innerHTML = (data.foundation && data.foundation.html) || '<p class="muted">Brak foundation.md</p>';
+    els.productGaps.innerHTML = (data.gaps && data.gaps.html) || '<p class="muted">Brak gaps.md</p>';
+  } catch (err) {
+    els.productStats.innerHTML = `<p class="sync-error">Błąd: ${escapeHtml(err.message)}</p>`;
+  }
+}
+
+function handleRoute() {
+  const hash = window.location.hash || '';
+  const match = hash.match(/^#\/product\/([^/]+)/);
+  if (match) {
+    loadProduct(decodeURIComponent(match[1]));
+  } else {
+    showListView();
+  }
+}
 
 els.product.addEventListener('change', loadUnits);
 els.status.addEventListener('change', loadUnits);
@@ -213,7 +273,12 @@ els.sync.addEventListener('click', runSync);
 els.syncClose.addEventListener('click', closeSyncModal);
 els.syncModal.querySelector('.modal-backdrop').addEventListener('click', closeSyncModal);
 els.detailClose.addEventListener('click', () => els.detail.classList.add('hidden'));
+els.backToList.addEventListener('click', () => { window.location.hash = ''; });
+window.addEventListener('hashchange', handleRoute);
 
-loadProducts().then(loadUnits).catch((err) => {
-  els.tbody.innerHTML = `<tr><td colspan="${COLSPAN}" class="empty">Błąd startu: ${err.message}</td></tr>`;
-});
+loadProducts()
+  .then(loadUnits)
+  .then(handleRoute)
+  .catch((err) => {
+    els.tbody.innerHTML = `<tr><td colspan="${COLSPAN}" class="empty">Błąd startu: ${err.message}</td></tr>`;
+  });

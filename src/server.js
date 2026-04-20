@@ -5,6 +5,9 @@ const path = require('path');
 const { execFile } = require('child_process');
 const { promisify } = require('util');
 const matter = require('gray-matter');
+const { marked } = require('marked');
+
+marked.setOptions({ gfm: true, breaks: false });
 
 const PORT = process.env.PORT || 3333;
 const REPO_ROOT = path.resolve(__dirname, '..');
@@ -136,6 +139,39 @@ async function listUnitFilesRelative() {
 app.get('/api/products', async (_req, res) => {
   try {
     res.json(await listProducts());
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+async function readProductDoc(product, filename) {
+  const fullPath = path.join(PRODUCTS_DIR, product, filename);
+  try {
+    const raw = await fsp.readFile(fullPath, 'utf8');
+    return { raw, html: marked.parse(raw) };
+  } catch (err) {
+    if (err.code === 'ENOENT') return null;
+    throw err;
+  }
+}
+
+app.get('/api/products/:product', async (req, res) => {
+  try {
+    const { product } = req.params;
+    const products = await listProducts();
+    if (!products.includes(product)) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    const [foundation, gaps, units] = await Promise.all([
+      readProductDoc(product, 'foundation.md'),
+      readProductDoc(product, 'gaps.md'),
+      collectUnits(product),
+    ]);
+    const stats = { total: units.length, backlog: 0, ready: 0, published: 0, archived: 0 };
+    for (const u of units) {
+      if (stats[u.status] !== undefined) stats[u.status] += 1;
+    }
+    res.json({ product, foundation, gaps, stats });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

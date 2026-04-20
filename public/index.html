@@ -47,7 +47,21 @@
   </div>
 
   <main>
-    <section class="table-wrap">
+    <section id="view-product" class="view hidden">
+      <button id="back-to-list" type="button" class="back-btn">← Wróć do listy CU</button>
+      <h2 id="product-name"></h2>
+      <div id="product-stats" class="stats"></div>
+      <section class="product-doc">
+        <h3>Foundation</h3>
+        <div id="product-foundation" class="markdown"></div>
+      </section>
+      <section class="product-doc">
+        <h3>Gaps</h3>
+        <div id="product-gaps" class="markdown"></div>
+      </section>
+    </section>
+
+    <section id="view-list" class="view table-wrap">
       <table id="units-table">
         <thead>
           <tr>
