@@ -5,8 +5,11 @@ module: zgody
 type: pain
 role: sales
 status: backlog
-platform: [instagram, linkedin, tiktok]
-published_at:
+platform:
+  - instagram
+  - linkedin
+  - tiktok
+published_at: null
 ---
 
 # Jedna akcja zamiast chaosu z danymi i wysyłką
@@ -30,4 +33,4 @@ Najtrudniejsze nie jest zrobić zgodę. Najtrudniejsze to wysłać ją do wszyst
 Wygeneruj pierwszą zgodę → https://zgoda.online
 
 ## Notatki
-Bardzo mocny unit sprzedażowy. Idealny kontekst: wyjazd drużyny na turniej lub obóz.
+Bardzo mocny unit sprzedażowy. Idealny kontekst: wyjazd drużyny na turniej lub obóz. idzie do realizacji
