@@ -368,3 +368,32 @@ td.empty {
   cursor: pointer;
   color: #888;
 }
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding-right: 32px;
+  margin-bottom: 8px;
+}
+.detail-header h2 { margin: 0; flex: 1; }
+
+.copy-btn {
+  background: #fff;
+  border: 1px solid #cfd3da;
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #374151;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.copy-btn:hover:not(:disabled) { background: #eef2ff; }
+.copy-btn:disabled { cursor: default; }
+.copy-btn.copied {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: #047857;
+}

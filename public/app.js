@@ -113,21 +113,47 @@ async function changeStatus(id, status) {
   await loadUnits();
 }
 
+let currentDetailBody = '';
+
+async function copyDetailBody() {
+  const btn = document.getElementById('detail-copy');
+  if (!btn) return;
+  try {
+    await navigator.clipboard.writeText(currentDetailBody);
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Skopiowano!';
+    btn.classList.add('copied');
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.classList.remove('copied');
+      btn.disabled = false;
+    }, 1500);
+  } catch (err) {
+    alert('Nie udało się skopiować: ' + err.message);
+  }
+}
+
 async function showDetail(id) {
   if (!id) return;
   els.detail.classList.remove('hidden');
   els.detailContent.innerHTML = '<p>Ładowanie…</p>';
   try {
     const unit = await api(`/api/units/${encodeURIComponent(id)}`);
+    currentDetailBody = unit.body || '';
     const fm = unit.frontmatter || {};
     els.detailContent.innerHTML = `
-      <h2>${unit.title || unit.id}</h2>
+      <div class="detail-header">
+        <h2>${unit.title || unit.id}</h2>
+        <button id="detail-copy" type="button" class="copy-btn" title="Kopiuj treść CU">📋 Kopiuj</button>
+      </div>
       <div class="meta">
         <strong>${unit.id}</strong> · ${fm.product || ''} / ${fm.module || ''} ·
         ${fm.type || ''} · ${fm.role || ''} · ${statusBadge(fm.status)}
       </div>
       <pre>${escapeHtml(unit.body || '')}</pre>
     `;
+    document.getElementById('detail-copy').addEventListener('click', copyDetailBody);
   } catch (err) {
     els.detailContent.innerHTML = `<p>Błąd: ${err.message}</p>`;
   }

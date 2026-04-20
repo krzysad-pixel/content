@@ -4,13 +4,13 @@
 
 ## Aktualny aktywny task
 
-**Brak**
+**Brak** — kolejka pusta.
 
 ## Kolejka (w kolejności realizacji)
 
 | Priorytet | Task | Plik | Status | Zależności |
 |-----------|------|------|--------|-----------|
-| 1 | TASK-007 — Ikona kopiuj w podglądzie CU | `tasks/queue/TASK-007-copy-icon-cu-detail.md` | todo | — |
+| *(pusto)* | | | | |
 
 ## Zrealizowane taski
 
@@ -22,3 +22,4 @@
 | TASK-004 | Dockeryzacja + uruchomienie na VM | 2026-04-20 |
 | TASK-005 | Sync to Git (endpoint + UI) | 2026-04-20 |
 | TASK-006 | Dashboard produktu | 2026-04-20 |
+| TASK-007 | Ikona kopiuj w podglądzie CU | 2026-04-20 |
