@@ -27,16 +27,30 @@ Aplikacja (Node.js + Express) czyta i zapisuje te pliki bezpośrednio z dysku.
 ```
 Przeglądarka
   → Express API (:3333)
-    → czyta/zapisuje pliki markdown z disk
+    → czyta/zapisuje pliki markdown z dysku
       → content/products/<produkt>/units/CU-NNN-slug.md
 ```
 
-## Moduły aplikacji
+## API — endpointy
 
-- `api/units` — CRUD content units (odczyt frontmatter + body)
-- `api/products` — lista produktów (katalogi w content/products/)
-- `api/status` — zmiana statusu unitu (patch frontmatter)
-- `frontend/` — SPA vanilla JS: lista, filtry, podgląd, zmiana statusu
+| Metoda | Endpoint | Opis |
+|--------|----------|------|
+| GET | `/api/products` | Lista produktów |
+| GET | `/api/products/:product` | Dashboard produktu (foundation, gaps, stats) |
+| GET | `/api/units` | Lista CU (filtry: product, status, type, role, module) |
+| GET | `/api/units/:id` | Pojedynczy CU (frontmatter + body) |
+| PATCH | `/api/units/:id/status` | Zmiana statusu CU |
+| PATCH | `/api/units/:id/content` | Edycja treści (body) CU |
+| POST | `/api/sync` | Pull → commit → push do GitHub |
+
+## Frontend — funkcje
+
+- Lista CU z filtrami (produkt / status / typ)
+- Zmiana statusu jednym kliknięciem
+- Panel podglądu CU z ikoną kopiowania (body do schowka)
+- Edycja treści CU inline (textarea → Zapisz / Anuluj)
+- Dashboard produktu (foundation.md + gaps.md + statystyki)
+- Sync modal z raportem (dodane / zmienione / błędne)
 
 ## Porty i usługi
 
@@ -46,13 +60,24 @@ Przeglądarka
 
 ## Źródła prawdy
 
-- Plan: `planning/MASTER_PLAN.md`
-- Kolejka tasków: `tasks/QUEUE_INDEX.md`
-- Model Content Unit: `content/_system/CONTENT_MODEL.md`
-- Zasady pracy AI: `ai/AI_RULES.md`
+| Co | Gdzie |
+|----|-------|
+| Kolejka tasków | `tasks/QUEUE_INDEX.md` |
+| Stan projektu | `ai/PROJECT_STATE.md` |
+| Mapa repo | `ai/REPO_MAP.md` |
+| Plan / backlog | `planning/BACKLOG.md` |
+| Decyzje arch. | `planning/DECISIONS.md` |
+| API spec | `docs/backend/API_SPEC.md` |
+| Model CU | `content/_system/CONTENT_MODEL.md` |
+| Produkt zgoda | `content/products/zgoda/foundation.md` |
 
 ## Historia zmian
 
-| Data | Zmiana | Kto |
-|------|--------|-----|
-| 2026-04-20 | Init projektu | krzysad |
+| Data | Zmiana |
+|------|--------|
+| 2026-04-20 | Init projektu, MVP (TASK-001..004) |
+| 2026-04-20 | Sync do Git (TASK-005), Dashboard produktu (TASK-006) |
+| 2026-04-20 | Ikona kopiuj w podglądzie CU (TASK-007) |
+| 2026-04-20 | Edycja treści CU w UI (TASK-008) |
+| 2026-04-20 | Fix: sync report pokazuje lokalnie zmienione pliki |
+| 2026-04-20 | Uzupełnienie struktury dokumentacji wg project-template |

@@ -4,42 +4,73 @@
 > Nie są to bugi ani blokerzy — to świadome decyzje "nie teraz".
 > Regularnie przeglądaj i awansuj do tasks/queue/ gdy nadejdzie czas.
 
-## Format wpisu
-
-```
-### [Tytuł]
-- **Skąd pochodzi:** [Task / sesja / decyzja, która wygenerowała ten backlog item]
-- **Dlaczego odłożone:** [np. poza zakresem v1, niski priorytet, zależność zewnętrzna]
-- **Kiedy wrócić:** [np. po wdrożeniu etapu B, po zebraniu feedbacku od userów]
-- **Estymacja:** [XS / S / M / L / XL]
-```
-
 ---
 
-## Do Etapu Następnego
+## Do Następnego Etapu
 
-<!-- Rzeczy które chcemy zrobić w następnym etapie / sprincie -->
+### Tworzenie nowych CU przez UI
+- **Skąd pochodzi:** MASTER_PLAN.md — backlog po MVP
+- **Dlaczego odłożone:** Aktualnie CU tworzone przez Claude/GPT + wklejanie do repo
+- **Kiedy wrócić:** Gdy baza CU osiągnie 30+, a ręczny import stanie się wąskim gardłem
+- **Estymacja:** M
 
-### [UZUPEŁNIJ: np. Dodanie rate limitingu do API]
-- **Skąd pochodzi:** [UZUPEŁNIJ]
-- **Dlaczego odłożone:** Poza zakresem v1
-- **Kiedy wrócić:** Po wdrożeniu v1 i zebraniu pierwszych danych z produkcji
+### Edycja frontmatter CU w UI
+- **Skąd pochodzi:** TASK-008 (edycja body już działa)
+- **Dlaczego odłożone:** Poza zakresem TASK-008, edge case — rzadka potrzeba
+- **Kiedy wrócić:** Na żądanie użytkownika
 - **Estymacja:** S
+
+### Dodawanie nowych produktów przez UI
+- **Skąd pochodzi:** MASTER_PLAN.md — backlog po MVP
+- **Dlaczego odłożone:** Aktualnie 1 produkt (zgoda), ręczne tworzenie katalogu wystarczy
+- **Kiedy wrócić:** Przy dodaniu drugiego produktu
+- **Estymacja:** S
+
+### Kolejność i harmonogram publikacji CU
+- **Skąd pochodzi:** gaps.md produktu zgoda
+- **Dlaczego odłożone:** Praca merytoryczna po stronie użytkownika + GPT
+- **Kiedy wrócić:** Po ukończeniu bazy min. 20 CU
+- **Estymacja:** XS (implementacja w repo)
+
+### Eksport CU do formatu publikacyjnego
+- **Skąd pochodzi:** MASTER_PLAN.md — backlog po MVP
+- **Dlaczego odłożone:** Wymaga decyzji o formacie docelowym
+- **Kiedy wrócić:** Po ustaleniu scenariuszy publikacji
+- **Estymacja:** M
 
 ---
 
 ## Techniczny Dług
 
-<!-- Rzeczy które warto poprawić ale nie blokują funkcjonalności -->
+### Brak testów automatycznych
+- **Skąd pochodzi:** Projekt bootstrapowany szybko
+- **Dlaczego odłożone:** Mały projekt, ręczny smoke test wystarczy
+- **Kiedy wrócić:** Przy wzroście złożoności API lub refaktorze frontendu
+- **Estymacja:** M
+
+### Sync pull/push bez auth fallbacku
+- **Skąd pochodzi:** TASK-005
+- **Dlaczego odłożone:** Działa na VM z skonfigurowanymi credentials
+- **Kiedy wrócić:** Przy problemach z tokenem lub rotacją credentials
+- **Estymacja:** S
 
 ---
 
 ## Pomysły / Nice-to-Have
 
-<!-- Rzeczy które mogą stać się wartościowe w przyszłości -->
+### Filtr po platformie (instagram / linkedin / tiktok)
+- Przydatny przy planowaniu dystrybucji CU
+
+### Podgląd markdown renderowany w detail panelu
+- Aktualnie body pokazywane jako plain text
+
+### Statystyki per seria (Fundament / AI / Build in public)
+- Licznik CU per seria na dashboardzie produktu
 
 ---
 
 ## Wstrzymane (zależności zewnętrzne)
 
-<!-- Rzeczy które czekają na coś zewnętrznego — decyzję, API, zasoby -->
+### Integracja z VDashboard
+- **Czeka na:** Decyzję o architekturze VDashboard
+- **Estymacja:** L
