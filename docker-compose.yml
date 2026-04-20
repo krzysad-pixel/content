@@ -1,0 +1,9 @@
+services:
+  content-app:
+    build: .
+    container_name: content-app
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./content:/app/content
+    restart: unless-stopped
