@@ -12,20 +12,20 @@ published_at:
 # Wgrywasz własny PDF i działasz
 
 ## Problem
-Każda organizacja ma własne wzory zgód, więc start nowego systemu często blokuje konieczność przebudowy dokumentów.
+Każdy klub ma własne wzory zgód, więc start nowego systemu często blokuje konieczność przebudowy dokumentów.
 
 ## Rozwiązanie
-W zgoda organizacja może wgrać własne szablony zgód w PDF i używać ich z polami dynamicznymi.
+W Zgoda.Online organizacja wgrywa własne szablony zgód w PDF i używa ich z polami dynamicznymi wypełnianymi automatycznie danymi uczestników.
 
 ## Efekt (Before / After)
-**Before:** Trzeba tworzyć dokumenty od zera albo dopasowywać organizację do sztywnego wzoru.
-**After:** Organizacja korzysta z własnych dokumentów i zachowuje swój standard pracy.
+**Before:** Trzeba tworzyć dokumenty od zera albo dopasowywać klub do sztywnego wzoru systemu.
+**After:** Klub korzysta z własnych dokumentów i zachowuje swój standard pracy.
 
 ## Hook
 Nie zmieniasz swoich dokumentów. Wgrywasz je i działasz.
 
 ## CTA
-Zobacz, jak działają szablony zgód → [URL]
+Zobacz, jak działają szablony zgód → https://zgoda.online
 
 ## Notatki
-Dobry unit landingowy pod moduł „Generowanie zgód”.
+Dobry unit landingowy pod moduł „Generowanie zgód". Redukuje barierę wejścia dla klubów z gotowymi wzorami.

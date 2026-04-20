@@ -9,23 +9,23 @@ platform: [instagram, linkedin, blog]
 published_at:
 ---
 
-# Każda organizacja ma własną przestrzeń
+# Twój klub ma własną przestrzeń w systemie
 
 ## Problem
-Gdy wiele grup, trenerów i uczestników działa w jednym wspólnym systemie, dane łatwo się mieszają i robi się chaos.
+Gdy wiele drużyn, trenerów i uczestników działa w jednym wspólnym systemie, dane łatwo się mieszają i robi się chaos.
 
 ## Rozwiązanie
-W zgoda każda organizacja działa w wydzielonej przestrzeni, np. `nazwa.zgoda.app`, z własnymi użytkownikami, grupami i danymi.
+W Zgoda.Online każdy klub sportowy działa w wydzielonej przestrzeni, np. `nazwaklub.zgoda.online`, z własnymi użytkownikami, grupami i danymi.
 
 ## Efekt (Before / After)
-**Before:** Klub, szkoła i sekcja działają na wspólnych arkuszach lub w jednym narzędziu bez wyraźnych granic.
-**After:** Każda organizacja ma własne środowisko i pełną separację danych.
+**Before:** Kilka drużyn w klubie działa na wspólnych arkuszach lub w jednym narzędziu bez wyraźnych granic.
+**After:** Każdy klub ma własne środowisko i pełną separację danych.
 
 ## Hook
-Każda organizacja ma własną aplikację — bez mieszania danych.
+Twój klub ma własną aplikację — bez mieszania danych z innymi.
 
 ## CTA
-Zobacz jak to działa → [URL]
+Zobacz jak to działa → https://zgoda.online
 
 ## Notatki
-Unit z serii „Fundament systemu”. Dobry jako pierwszy materiał wyjaśniający architekturę produktu.
+Unit z serii „Fundament systemu". Dobry jako pierwszy materiał wyjaśniający architekturę produktu.

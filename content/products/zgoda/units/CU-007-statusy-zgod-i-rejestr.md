@@ -15,17 +15,17 @@ published_at:
 Po wysyłce dokumentów zaczyna się chaos: nie wiadomo co zostało wysłane, pobrane, wydrukowane albo zarchiwizowane.
 
 ## Rozwiązanie
-Zgoda prowadzi rejestr statusów dokumentów: utworzona, wysłana, pobrana, wydrukowana, zarchiwizowana lub anulowana.
+Zgoda.Online prowadzi rejestr statusów dokumentów: utworzona, wysłana, pobrana, wydrukowana, zarchiwizowana lub anulowana.
 
 ## Efekt (Before / After)
-**Before:** Statusy żyją w mailach, telefonach i pamięci ludzi.
+**Before:** Statusy żyją w mailach, telefonach i pamięci trenera.
 **After:** Każda zgoda ma swój status i historię w jednym miejscu.
 
 ## Hook
 Najgorsze nie jest wysłać zgodę. Najgorsze to nie wiedzieć, co się z nią dalej stało.
 
 ## CTA
-Sprawdź, jak działają statusy i rejestry → [URL]
+Sprawdź, jak działają statusy i rejestry → https://zgoda.online
 
 ## Notatki
-Dobry unit edukacyjny. Można go spiąć z raportami i eksportami.
+Dobry unit edukacyjny. Można spiąć z widokiem eksportu danych przed wyjazdem — kto oddał zgodę, kto nie.

@@ -9,23 +9,23 @@ platform: [instagram, linkedin, tiktok]
 published_at:
 ---
 
-# Jedno wydarzenie, wiele zgód — bez ręcznego przepisywania
+# Jeden wyjazd, wiele zgód — bez ręcznego przepisywania
 
 ## Problem
-Przy wyjazdach, zajęciach i wydarzeniach trzeba przygotować osobny dokument dla każdego dziecka, co jest czasochłonne i męczące.
+Przed wyjazdem trzeba przygotować osobny dokument dla każdego dziecka. Przy 20–30 uczestnikach to godziny ręcznej pracy.
 
 ## Rozwiązanie
-W zgoda wybierasz szablon, kontekst wydarzenia i grupę uczestników, a system generuje osobny PDF dla każdej osoby.
+W Zgoda.Online wybierasz szablon, kontekst wyjazdu i grupę uczestników, a system generuje osobny PDF dla każdej osoby.
 
 ## Efekt (Before / After)
 **Before:** Każdy dokument trzeba składać ręcznie lub kopiować dane między plikami.
-**After:** Jedno ustawienie wydarzenia tworzy komplet gotowych zgód dla wszystkich uczestników.
+**After:** Jeden wyjazd — kilkadziesiąt gotowych zgód. Bez przepisywania, bez pomyłek.
 
 ## Hook
 Jedno wydarzenie. Kilkadziesiąt zgód. Jedno kliknięcie.
 
 ## CTA
-Wygeneruj pierwszą zgodę → [URL]
+Wygeneruj pierwszą zgodę → https://zgoda.online
 
 ## Notatki
-Bardzo mocny unit pod rolkę „problem → rozwiązanie → efekt”.
+Bardzo mocny unit pod rolkę „problem → rozwiązanie → efekt". Idealny kontekst: wyjazd drużyny na turniej lub obóz.

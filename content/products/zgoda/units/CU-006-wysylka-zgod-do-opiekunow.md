@@ -15,17 +15,17 @@ published_at:
 Ręczna wysyłka dokumentów do rodziców jest wolna, a przy wielu opiekunach łatwo kogoś pominąć.
 
 ## Rozwiązanie
-Zgoda wysyła wygenerowane dokumenty e-mailowo do wszystkich opiekunów przypisanych do dziecka.
+Zgoda.Online wysyła wygenerowane dokumenty e-mailowo do wszystkich opiekunów przypisanych do dziecka.
 
 ## Efekt (Before / After)
 **Before:** Trener pilnuje ręcznie, kto dostał dokument i do kogo jeszcze trzeba napisać.
-**After:** System dystrybuuje dokumenty automatycznie do właściwych osób.
+**After:** System dystrybuuje dokumenty automatycznie do właściwych opiekunów.
 
 ## Hook
 Jedno kliknięcie i zgoda trafia do wszystkich opiekunów.
 
 ## CTA
-Zobacz, jak działa wysyłka zgód → [URL]
+Zobacz, jak działa wysyłka zgód → https://zgoda.online
 
 ## Notatki
-Dobry materiał sprzedażowy i produktowy. Łączy prostotę z konkretną korzyścią.
+Dobry materiał sprzedażowy i produktowy. Łączy prostotę z konkretną korzyścią dla trenera przygotowującego wyjazd.
