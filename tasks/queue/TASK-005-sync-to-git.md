@@ -1,46 +1,71 @@
-# TASK-005 — Przycisk "Sync to Git" w UI
+# TASK-005 — Przycisk "Sync" w UI
 
 ## Cel
 
-Dodać przycisk w interfejsie który robi `git add -A && git commit && git push` na serwerze — bez potrzeby wchodzenia przez SSH. Jeden klik = zmiany w repo.
+Dodać przycisk "Sync" który synchronizuje repo (pull + push) i daje raport o stanie plików — bez wchodzenia przez SSH.
+
+## Sekwencja operacji (w tej kolejności)
+
+1. `git pull origin main` — pobierz zmiany z GitHub
+2. Re-scan `content/products/*/units/*.md` — odśwież listę CU w pamięci aplikacji
+3. Walidacja frontmatter każdego pliku — sprawdź wymagane pola
+4. `git add -A && git commit -m "sync: YYYY-MM-DD HH:MM"` — commituj lokalne zmiany (jeśli są)
+5. `git push origin main` — wyślij do GitHub
 
 ## W zakresie (In Scope)
 
-- Endpoint `POST /api/sync` w `src/server.js`:
-  - wykonuje `git add -A`
-  - wykonuje `git commit -m "sync: YYYY-MM-DD HH:MM"` z aktualnym timestampem
-  - wykonuje `git push origin main`
-  - zwraca `{ ok: true, message: "..." }` lub `{ ok: false, error: "..." }`
-  - jeśli nie ma nic do commitowania — zwraca `{ ok: true, message: "Brak zmian" }` bez błędu
-- Przycisk "Sync to Git" w `public/index.html` — widoczny w nagłówku aplikacji
-- Po kliknięciu: spinner podczas operacji, potem komunikat sukcesu lub błędu
+- Endpoint `POST /api/sync` w `src/server.js` realizujący sekwencję powyżej
+- Raport zwracany przez endpoint:
+  ```json
+  {
+    "ok": true,
+    "pulled": true,
+    "committed": true,
+    "pushed": true,
+    "report": {
+      "added": ["CU-009-nowy.md"],
+      "changed": ["CU-003-grupy-i-przypisania.md"],
+      "invalid": [
+        { "file": "CU-010-brak-id.md", "errors": ["brak pola: id", "brak pola: status"] }
+      ]
+    }
+  }
+  ```
+- Walidacja frontmatter — wymagane pola: `id`, `product`, `module`, `type`, `role`, `status`
+- Przycisk "Sync" w nagłówku `public/index.html`
+- Po kliknięciu: spinner, potem modal/panel z raportem (dodane / zmienione / błędne)
+- Pliki z błędami oznaczone w liście CU (np. badge "invalid")
 - Logika w `public/app.js`
 
 ## Poza zakresem (Out of Scope)
 
 - Wpisywanie własnej wiadomości commita
-- Pull z repo (tylko push)
-- Historia commitów w UI
+- Historia synców w UI
+- Auto-naprawa błędnych plików
 
 ## Referencje
 
 - Backend: `src/server.js`
 - Frontend: `public/app.js`, `public/index.html`
+- Model frontmatter: `content/_system/CONTENT_MODEL.md`
 
 ## Kryteria akceptacji
 
-- [ ] Przycisk "Sync to Git" widoczny w nagłówku aplikacji
-- [ ] Kliknięcie robi commit z timestampem i push do `origin/main`
-- [ ] Gdy nie ma zmian — przycisk działa bez błędu, pokazuje "Brak zmian"
-- [ ] Błąd (np. brak połączenia z GitHub) jest pokazany użytkownikowi
-- [ ] Po sync widać nowy commit na `github.com/krzysad-pixel/content`
+- [ ] Przycisk "Sync" widoczny w nagłówku
+- [ ] Pull wykonuje się przed push — nowe CU z GitHub pojawiają się w liście
+- [ ] Raport pokazuje: dodane / zmienione / błędne pliki
+- [ ] Plik bez wymaganego pola frontmatter pojawia się w sekcji "błędne"
+- [ ] Gdy nie ma zmian do commita — sync działa bez błędu
+- [ ] Błąd połączenia z GitHub jest pokazany użytkownikowi
+- [ ] Po sync lista CU odświeża się automatycznie
 
 ## Notatki
 
-- Użyj `child_process.exec` lub `execSync` w Node.js do wywołania git
-- Komenda commit: `git commit -m "sync: $(date '+%Y-%m-%d %H:%M')"` — lub generuj timestamp w JS i przekaż jako string
-- Working directory dla git: katalog repo (`~/content/`)
-- **Planowany koszt:** S
+- Użyj `child_process.exec` w Node.js — async, nie blokuje serwera
+- `git pull` może zająć chwilę — spinner w UI jest obowiązkowy
+- Working directory dla wszystkich komend git: katalog repo (`~/content/`)
+- Do wykrycia added/changed: porównaj listę plików przed i po pull
+- **Planowany koszt:** M (więcej niż pierwotne S — raport i walidacja dodają złożoności)
 
 ## Status
 
