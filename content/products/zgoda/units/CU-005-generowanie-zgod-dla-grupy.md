@@ -4,9 +4,12 @@ product: zgoda
 module: zgody
 type: pain
 role: sales
-status: backlog
-platform: [instagram, linkedin, tiktok]
-published_at:
+status: archived
+platform:
+  - instagram
+  - linkedin
+  - tiktok
+published_at: null
 ---
 
 # Jeden wyjazd, wiele zgód — bez ręcznego przepisywania
